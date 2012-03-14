@@ -7,17 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		711F728C151148FE00959D55 /* BEPrivateChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 711F728B151148FE00959D55 /* BEPrivateChatViewController.m */; };
+		711F729415114C5100959D55 /* Icon-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 711F728E15114C5100959D55 /* Icon-iPad.png */; };
+		711F729515114C5100959D55 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 711F728F15114C5100959D55 /* Icon-Small-50.png */; };
+		711F729615114C5100959D55 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 711F729015114C5100959D55 /* Icon-Small.png */; };
+		711F729715114C5100959D55 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 711F729115114C5100959D55 /* Icon-Small@2x.png */; };
+		711F729815114C5100959D55 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 711F729215114C5100959D55 /* Icon.png */; };
+		711F729915114C5100959D55 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 711F729315114C5100959D55 /* Icon@2x.png */; };
 		71A2E83A151142E3006B1684 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A2E839151142E3006B1684 /* UIKit.framework */; };
 		71A2E83C151142E3006B1684 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A2E83B151142E3006B1684 /* Foundation.framework */; };
 		71A2E83E151142E3006B1684 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A2E83D151142E3006B1684 /* CoreGraphics.framework */; };
 		71A2E846151142E3006B1684 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A2E845151142E3006B1684 /* main.m */; };
 		71A2E85D1511435D006B1684 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71A2E85E1511435D006B1684 /* InfoPlist.strings */; };
 		71A2E86F15114377006B1684 /* BEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A2E86415114377006B1684 /* BEAppDelegate.m */; };
-		71A2E87015114377006B1684 /* BEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A2E86A15114377006B1684 /* BEViewController.m */; };
+		71A2E87015114377006B1684 /* BEPeerToPeerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A2E86A15114377006B1684 /* BEPeerToPeerViewController.m */; };
 		71A2E87115114377006B1684 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A2E86E15114377006B1684 /* MainStoryboard.storyboard */; };
+		71A2E873151145A4006B1684 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A2E872151145A4006B1684 /* GameKit.framework */; };
+		71A2E876151145CA006B1684 /* BEPeerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A2E875151145CA006B1684 /* BEPeerCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		711F728A151148FE00959D55 /* BEPrivateChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEPrivateChatViewController.h; sourceTree = "<group>"; };
+		711F728B151148FE00959D55 /* BEPrivateChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEPrivateChatViewController.m; sourceTree = "<group>"; };
+		711F728E15114C5100959D55 /* Icon-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-iPad.png"; sourceTree = "<group>"; };
+		711F728F15114C5100959D55 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		711F729015114C5100959D55 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		711F729115114C5100959D55 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		711F729215114C5100959D55 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		711F729315114C5100959D55 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		711F729A15114D6900959D55 /* BluetoothExperiments.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BluetoothExperiments.entitlements; sourceTree = "<group>"; };
 		71A2E835151142E3006B1684 /* BluetoothExperiments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothExperiments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A2E839151142E3006B1684 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		71A2E83B151142E3006B1684 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -28,9 +46,12 @@
 		71A2E85E1511435D006B1684 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		71A2E86315114377006B1684 /* BEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEAppDelegate.h; sourceTree = "<group>"; };
 		71A2E86415114377006B1684 /* BEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEAppDelegate.m; sourceTree = "<group>"; };
-		71A2E86915114377006B1684 /* BEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEViewController.h; sourceTree = "<group>"; };
-		71A2E86A15114377006B1684 /* BEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEViewController.m; sourceTree = "<group>"; };
+		71A2E86915114377006B1684 /* BEPeerToPeerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEPeerToPeerViewController.h; sourceTree = "<group>"; };
+		71A2E86A15114377006B1684 /* BEPeerToPeerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEPeerToPeerViewController.m; sourceTree = "<group>"; };
 		71A2E86E15114377006B1684 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		71A2E872151145A4006B1684 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		71A2E874151145CA006B1684 /* BEPeerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEPeerCell.h; sourceTree = "<group>"; };
+		71A2E875151145CA006B1684 /* BEPeerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEPeerCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71A2E873151145A4006B1684 /* GameKit.framework in Frameworks */,
 				71A2E83A151142E3006B1684 /* UIKit.framework in Frameworks */,
 				71A2E83C151142E3006B1684 /* Foundation.framework in Frameworks */,
 				71A2E83E151142E3006B1684 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +89,7 @@
 		71A2E838151142E3006B1684 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71A2E872151145A4006B1684 /* GameKit.framework */,
 				71A2E839151142E3006B1684 /* UIKit.framework */,
 				71A2E83B151142E3006B1684 /* Foundation.framework */,
 				71A2E83D151142E3006B1684 /* CoreGraphics.framework */,
@@ -90,6 +113,7 @@
 		71A2E840151142E3006B1684 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				711F729A15114D6900959D55 /* BluetoothExperiments.entitlements */,
 				71A2E841151142E3006B1684 /* BluetoothExperiments-Info.plist */,
 				71A2E85E1511435D006B1684 /* InfoPlist.strings */,
 				71A2E845151142E3006B1684 /* main.m */,
@@ -117,6 +141,12 @@
 		71A2E86115114377006B1684 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				711F728E15114C5100959D55 /* Icon-iPad.png */,
+				711F728F15114C5100959D55 /* Icon-Small-50.png */,
+				711F729015114C5100959D55 /* Icon-Small.png */,
+				711F729115114C5100959D55 /* Icon-Small@2x.png */,
+				711F729215114C5100959D55 /* Icon.png */,
+				711F729315114C5100959D55 /* Icon@2x.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -144,6 +174,8 @@
 		71A2E86615114377006B1684 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				71A2E874151145CA006B1684 /* BEPeerCell.h */,
+				71A2E875151145CA006B1684 /* BEPeerCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -158,8 +190,10 @@
 		71A2E86815114377006B1684 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				71A2E86915114377006B1684 /* BEViewController.h */,
-				71A2E86A15114377006B1684 /* BEViewController.m */,
+				71A2E86915114377006B1684 /* BEPeerToPeerViewController.h */,
+				71A2E86A15114377006B1684 /* BEPeerToPeerViewController.m */,
+				711F728A151148FE00959D55 /* BEPrivateChatViewController.h */,
+				711F728B151148FE00959D55 /* BEPrivateChatViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -240,6 +274,12 @@
 			files = (
 				71A2E85D1511435D006B1684 /* InfoPlist.strings in Resources */,
 				71A2E87115114377006B1684 /* MainStoryboard.storyboard in Resources */,
+				711F729415114C5100959D55 /* Icon-iPad.png in Resources */,
+				711F729515114C5100959D55 /* Icon-Small-50.png in Resources */,
+				711F729615114C5100959D55 /* Icon-Small.png in Resources */,
+				711F729715114C5100959D55 /* Icon-Small@2x.png in Resources */,
+				711F729815114C5100959D55 /* Icon.png in Resources */,
+				711F729915114C5100959D55 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +292,9 @@
 			files = (
 				71A2E846151142E3006B1684 /* main.m in Sources */,
 				71A2E86F15114377006B1684 /* BEAppDelegate.m in Sources */,
-				71A2E87015114377006B1684 /* BEViewController.m in Sources */,
+				71A2E87015114377006B1684 /* BEPeerToPeerViewController.m in Sources */,
+				71A2E876151145CA006B1684 /* BEPeerCell.m in Sources */,
+				711F728C151148FE00959D55 /* BEPrivateChatViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,9 +347,11 @@
 		71A2E854151142E3006B1684 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BluetoothExperiments/BluetoothExperiments.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BluetoothExperiments/BluetoothExperiments-Prefix.pch";
 				INFOPLIST_FILE = "BluetoothExperiments/BluetoothExperiments-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -316,9 +360,11 @@
 		71A2E855151142E3006B1684 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BluetoothExperiments/BluetoothExperiments.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BluetoothExperiments/BluetoothExperiments-Prefix.pch";
 				INFOPLIST_FILE = "BluetoothExperiments/BluetoothExperiments-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

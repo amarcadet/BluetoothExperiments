@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface BEViewController : UIViewController
+@interface BEPeerToPeerViewController : UITableViewController
 
 @end
