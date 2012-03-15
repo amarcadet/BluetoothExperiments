@@ -266,7 +266,7 @@
 			attributes = {
 				CLASSPREFIX = BE;
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = "SQLI Agency";
+				ORGANIZATIONNAME = Epershand;
 			};
 			buildConfigurationList = 71A2E82F151142E3006B1684 /* Build configuration list for PBXProject "BluetoothExperiments" */;
 			compatibilityVersion = "Xcode 3.2";
