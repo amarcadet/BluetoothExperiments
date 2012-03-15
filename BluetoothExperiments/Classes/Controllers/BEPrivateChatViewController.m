@@ -137,11 +137,9 @@
 						  delay:.0 
 						options:animationCurve
 					 animations:^{
-						 [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+						 [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height - keyboardFrame.size.height)];
 					 } 
-					 completion:^(BOOL finished) {
-						 
-					 }];
+					 completion:NULL];
 }
 
 - (void)keyboardWillDisappear:(NSNotification *)notif
@@ -160,11 +158,9 @@
 						  delay:.0 
 						options:animationCurve
 					 animations:^{
-						 [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+						 [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height + keyboardFrame.size.height)];
 					 } 
-					 completion:^(BOOL finished) {
-						 
-					 }];
+					 completion:NULL];
 }
 
 
