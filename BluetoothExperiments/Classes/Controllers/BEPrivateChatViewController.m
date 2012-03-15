@@ -106,6 +106,7 @@
 - (void)viewDidUnload
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[self.session setDataReceiveHandler:nil withContext:NULL];
 	
 	[tableView release], tableView = nil;
 	[composeToolbar release], composeToolbar = nil;
