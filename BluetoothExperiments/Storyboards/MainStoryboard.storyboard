@@ -145,41 +145,87 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Private chat" id="1JC-BB-64s"/>
                     <connections>
-                        <segue destination="74q-xF-ZJZ" kind="push" identifier="chatSegue" id="LFn-bC-5I9"/>
+                        <segue destination="l3N-S1-vbd" kind="push" identifier="chatSegue" id="Ql4-Nh-XzH"/>
                     </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="603" y="-76"/>
         </scene>
         <!--Private Chat View Controller - Chat with ...-->
-        <scene sceneID="Gv4-gd-2fS">
+        <scene sceneID="gSI-Ra-7Nd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GaX-S2-Yia" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="74q-xF-ZJZ" customClass="BEPrivateChatViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pya-6C-vGL">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rj9-F3-7D9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="l3N-S1-vbd" customClass="BEPrivateChatViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dma-dp-0Cd">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ojX-Xv-jzu">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="74q-xF-ZJZ" id="NT1-g3-nKM"/>
-                            <outlet property="delegate" destination="74q-xF-ZJZ" id="t0j-W6-9zk"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Chat with ..." id="pcZ-7K-meZ"/>
-                </tableViewController>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MED-fu-iM1">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BEMessageCell" id="3nd-ON-kKW" customClass="BEMessageCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="c6u-hi-d7W">
+                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="c6u-hi-d7W" id="CjH-vv-d8n"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="l3N-S1-vbd" id="z0K-sw-FYb"/>
+                                    <outlet property="delegate" destination="l3N-S1-vbd" id="SVz-y0-5b9"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="UX1-Yx-5yL">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="8q9-Nl-3YN">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="TVu-vo-5VQ">
+                                            <rect key="frame" x="12" y="7" width="240" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="l3N-S1-vbd" id="k6f-2N-wZy"/>
+                                            </connections>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Send" style="done" id="seD-ql-j69">
+                                        <connections>
+                                            <action selector="sendAction:" destination="l3N-S1-vbd" id="9eC-kd-N7L"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chat with ..." id="L9k-77-6LE"/>
+                    <connections>
+                        <outlet property="composeToolbar" destination="UX1-Yx-5yL" id="HtO-pN-cCu"/>
+                        <outlet property="tableView" destination="MED-fu-iM1" id="KNu-mA-y0L"/>
+                        <outlet property="textField" destination="TVu-vo-5VQ" id="v8P-Nq-bdf"/>
+                    </connections>
+                </viewController>
             </objects>
-            <point key="canvasLocation" x="1074" y="-76"/>
+            <point key="canvasLocation" x="1159" y="-76"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H2s-8v-l2Q">
@@ -198,18 +244,29 @@
         </scene>
     </scenes>
     <classes>
+        <class className="BEMessageCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BEMessageCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="BEPeerCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BEPeerCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="indicatorView" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="peerLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="BEPeerToPeerViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BEPeerToPeerViewController.h"/>
         </class>
-        <class className="BEPrivateChatViewController" superclassName="UITableViewController">
+        <class className="BEPrivateChatViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BEPrivateChatViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sendAction:"/>
+                <relationship kind="outlet" name="composeToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

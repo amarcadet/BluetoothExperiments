@@ -8,15 +8,19 @@
 
 #import "BEPeerToPeerViewController.h"
 #import "BEPeerCell.h"
+#import "EHAlertView.h"
+#import "BEPrivateChatViewController.h"
 
 @interface BEPeerToPeerViewController () <GKSessionDelegate>
 {
 	GKSession	*_session;
 	NSString	*_connectingPeer;
+	NSString	*_connectedPeer;
 }
 
 @property (nonatomic, retain) GKSession *session;
 @property (nonatomic, retain) NSString *connectingPeer;
+@property (nonatomic, retain) NSString *connectedPeer;
 
 - (void)startSession;
 - (void)stopSession;
@@ -28,11 +32,14 @@
 
 @synthesize session = _session;
 @synthesize connectingPeer = _connectingPeer;
+@synthesize connectedPeer = _connectedPeer;
 
 - (void)dealloc
 {
 	[self stopSession];
+	
 	self.connectingPeer = nil;
+	self.connectedPeer = nil;
 	
 	[super dealloc];
 }
@@ -57,6 +64,19 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+#pragma mark - Controller
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"chatSegue"])
+	{
+		BEPrivateChatViewController *privateController = (BEPrivateChatViewController *)segue.destinationViewController;
+		privateController.session = self.session;
+		privateController.peerID = (NSString *)sender;
+	}
 }
 
 
@@ -96,7 +116,9 @@
 	if ([peerID isEqualToString:self.connectingPeer] && state == GKPeerStateConnected)
 	{
 		NSLog(@"Connected to %@", [session displayNameForPeer:peerID]);
-		//self.connectingPeer = nil;
+		self.connectedPeer = self.connectingPeer;
+		self.connectingPeer = nil;
+		[self performSegueWithIdentifier:@"chatSegue" sender:peerID];
 	}
 	
 	[self.tableView reloadData];
@@ -110,6 +132,24 @@
 - (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID
 {
 	NSLog(@"Connection request from : %@ (%@)", [session displayNameForPeer:peerID], peerID);
+	
+	EHAlertView *alertView = [[EHAlertView alloc] initWithTitle:@"Connection request"
+														message:[NSString stringWithFormat:@"%@ would like to chat with you", [session displayNameForPeer:peerID]]
+											  cancelButtonTitle:@"Ignore" 
+											  otherButtonTitles:@"Accept", nil];
+	[alertView setClickedButtonBlock:^(NSInteger buttonIndex) {
+		if (buttonIndex == 1)
+		{
+			[session acceptConnectionFromPeer:peerID error:NULL];
+			[self performSegueWithIdentifier:@"chatSegue" sender:peerID];
+		}
+		else
+		{
+			[session denyConnectionFromPeer:peerID];
+		}
+	}];
+	[alertView show];
+	[alertView release];
 }
 
 - (void)session:(GKSession *)session didFailWithError:(NSError *)error
@@ -130,7 +170,18 @@
 	GKPeerStateConnecting,   // waiting for accept, or deny response
 #endif
 	
-	return [[self.session peersWithConnectionState:GKPeerStateAvailable] count];
+	NSMutableArray *allPeers = [NSMutableArray arrayWithCapacity:0];
+	
+	NSArray *availablePeers = [self.session peersWithConnectionState:GKPeerStateAvailable];
+	[allPeers addObjectsFromArray:availablePeers];
+	
+	NSArray *connectedPeers = [self.session peersWithConnectionState:GKPeerStateConnected];
+	[allPeers addObjectsFromArray:connectedPeers];
+	
+	NSArray *connectingPeers = [self.session peersWithConnectionState:GKPeerStateConnecting];
+	[allPeers addObjectsFromArray:connectingPeers];
+	
+	return [allPeers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -194,6 +245,12 @@
 	[allPeers addObjectsFromArray:connectingPeers];
 	
 	NSString *peerID = [allPeers objectAtIndex:indexPath.row];
+	
+	if ([peerID isEqualToString:self.connectedPeer])
+	{
+		[self performSegueWithIdentifier:@"chatSegue" sender:peerID];
+		return;
+	}
 	
 	if ([availablePeers containsObject:peerID])
 	{

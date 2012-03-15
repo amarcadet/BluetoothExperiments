@@ -10,12 +10,10 @@
 
 @interface BEPeerCell : UITableViewCell
 {
-	UILabel					*peerLabel;
-	UIActivityIndicatorView *indicatorView;
+	UILabel	*peerLabel;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *peerLabel;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *indicatorView;
 
 + (NSString *)reuseIdentifier;
 

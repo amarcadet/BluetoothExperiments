@@ -1,20 +1,20 @@
 //
-//  BEPeerCell.m
+//  BEMessageCell.m
 //  BluetoothExperiments
 //
-//  Created by Antoine Marcadet on 14/03/12.
+//  Created by Antoine Marcadet on 15/03/12.
 //  Copyright (c) 2012 SQLI Agency. All rights reserved.
 //
 
-#import "BEPeerCell.h"
+#import "BEMessageCell.h"
 
-@implementation BEPeerCell
+@implementation BEMessageCell
 
-@synthesize peerLabel;
+@synthesize messageLabel;
 
 - (void)dealloc
 {
-	[peerLabel release];
+	[messageLabel release];
 	
 	[super dealloc];
 }
@@ -23,7 +23,7 @@
 {
 	[super prepareForReuse];
 	
-	peerLabel.text = @"";
+	messageLabel.text = @"";
 }
 
 + (NSString *)reuseIdentifier

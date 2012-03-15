@@ -1,0 +1,3 @@
+[submodule "BluetoothExperiments/Libraries/EHAlertView"]
+	path = BluetoothExperiments/Libraries/EHAlertView
+	url = git://github.com/amarcadet/EHAlertView.git

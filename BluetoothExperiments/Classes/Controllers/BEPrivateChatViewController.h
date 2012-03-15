@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
 
-@interface BEPrivateChatViewController : UITableViewController
+@interface BEPrivateChatViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+{
+	IBOutlet UITableView	*tableView;
+	IBOutlet UIToolbar		*composeToolbar;
+	IBOutlet UITextField	*textField;
+}
 
 @property (nonatomic, retain) GKSession *session;
 @property (nonatomic, retain) NSString *peerID;
+
+@property (nonatomic, readonly) UITableView *tableView;
+
+- (IBAction)sendAction:(id)sender;
 
 @end

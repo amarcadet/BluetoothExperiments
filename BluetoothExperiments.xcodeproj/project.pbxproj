@@ -24,6 +24,8 @@
 		71A2E87115114377006B1684 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A2E86E15114377006B1684 /* MainStoryboard.storyboard */; };
 		71A2E873151145A4006B1684 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A2E872151145A4006B1684 /* GameKit.framework */; };
 		71A2E876151145CA006B1684 /* BEPeerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A2E875151145CA006B1684 /* BEPeerCell.m */; };
+		71B95CF915115C2900CFFDEB /* EHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B95CEB15115C2900CFFDEB /* EHAlertView.m */; };
+		71B95D0015115EF600CFFDEB /* BEMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B95CFF15115EF600CFFDEB /* BEMessageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,10 @@
 		71A2E872151145A4006B1684 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		71A2E874151145CA006B1684 /* BEPeerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEPeerCell.h; sourceTree = "<group>"; };
 		71A2E875151145CA006B1684 /* BEPeerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEPeerCell.m; sourceTree = "<group>"; };
+		71B95CEA15115C2900CFFDEB /* EHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EHAlertView.h; sourceTree = "<group>"; };
+		71B95CEB15115C2900CFFDEB /* EHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EHAlertView.m; sourceTree = "<group>"; };
+		71B95CFE15115EF600CFFDEB /* BEMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMessageCell.h; sourceTree = "<group>"; };
+		71B95CFF15115EF600CFFDEB /* BEMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMessageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,8 @@
 			children = (
 				71A2E874151145CA006B1684 /* BEPeerCell.h */,
 				71A2E875151145CA006B1684 /* BEPeerCell.m */,
+				71B95CFE15115EF600CFFDEB /* BEMessageCell.h */,
+				71B95CFF15115EF600CFFDEB /* BEMessageCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -201,6 +209,7 @@
 		71A2E86B15114377006B1684 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				71B95CDA15115C2900CFFDEB /* EHAlertView */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -218,6 +227,15 @@
 				71A2E86E15114377006B1684 /* MainStoryboard.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		71B95CDA15115C2900CFFDEB /* EHAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				71B95CEA15115C2900CFFDEB /* EHAlertView.h */,
+				71B95CEB15115C2900CFFDEB /* EHAlertView.m */,
+			);
+			path = EHAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +313,8 @@
 				71A2E87015114377006B1684 /* BEPeerToPeerViewController.m in Sources */,
 				71A2E876151145CA006B1684 /* BEPeerCell.m in Sources */,
 				711F728C151148FE00959D55 /* BEPrivateChatViewController.m in Sources */,
+				71B95CF915115C2900CFFDEB /* EHAlertView.m in Sources */,
+				71B95D0015115EF600CFFDEB /* BEMessageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

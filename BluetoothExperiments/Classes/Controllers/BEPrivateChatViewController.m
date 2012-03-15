@@ -7,29 +7,109 @@
 //
 
 #import "BEPrivateChatViewController.h"
+#import "BEMessageCell.h"
 
 @interface BEPrivateChatViewController ()
 {
-	GKSession	*_session;
-	NSString	*_peerID;
+	GKSession			*_session;
+	NSString			*_peerID;
+	NSMutableArray		*_messages;
 }
 
+@property (nonatomic, retain) NSMutableArray *messages;
+
+- (void)commonInit;
+- (void)sendMessage:(NSString *)message;
+- (void)receiveMessage:(NSString *)message;
+
 @end
+
 
 @implementation BEPrivateChatViewController
 
 @synthesize session = _session;
 @synthesize peerID = _peerID;
+@synthesize messages = _messages;
+
+@synthesize tableView;
+
+#pragma mark - Memory management
+
+- (void)dealloc
+{
+	if (tableView != nil)
+	{
+		[tableView release], tableView = nil;
+	}
+	
+	if (tableView != nil)
+	{
+		[composeToolbar release], composeToolbar = nil;
+	}
+	
+	if (tableView != nil)
+	{
+		[textField release], textField = nil;
+	}
+	
+	self.messages = nil;
+	
+	[super dealloc];
+}
+
+- (void)commonInit
+{
+	self.messages = [NSMutableArray arrayWithCapacity:0];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	if ((self = [super initWithCoder:aDecoder]))
+	{
+		[self commonInit];
+	}
+	return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+	{
+		[self commonInit];
+	}
+	return self;
+}
+
+
+#pragma mark - View management
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
+	self.title = [NSString stringWithFormat:@"Chat with %@", [self.session displayNameForPeer:self.peerID]];
+	[self.session setDataReceiveHandler:self withContext:NULL];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWillAppear:) 
+												 name:UIKeyboardWillShowNotification
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(keyboardWillDisappear:)
+												 name:UIKeyboardWillHideNotification 
+											   object:nil];
+	
+	//[textField becomeFirstResponder];
 }
 
 - (void)viewDidUnload
 {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
+	[tableView release], tableView = nil;
+	[composeToolbar release], composeToolbar = nil;
+	[textField release], textField = nil;
     [super viewDidUnload];
 }
 
@@ -39,83 +119,140 @@
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - Keyboard
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)keyboardWillAppear:(NSNotification *)notif
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+	NSDictionary *userInfo = [notif userInfo];
+	
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardFrame;
+    
+	[[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+	
+	[UIView animateWithDuration:animationDuration
+						  delay:.0 
+						options:animationCurve
+					 animations:^{
+						 [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+					 } 
+					 completion:^(BOOL finished) {
+						 
+					 }];
 }
+
+- (void)keyboardWillDisappear:(NSNotification *)notif
+{	
+	NSDictionary *userInfo = [notif userInfo];
+	
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardFrame;
+    
+	[[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+	
+	[UIView animateWithDuration:animationDuration
+						  delay:.0 
+						options:animationCurve
+					 animations:^{
+						 [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+					 } 
+					 completion:^(BOOL finished) {
+						 
+					 }];
+}
+
+
+#pragma mark - Text field delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)inTextField
+{
+	[self sendAction:inTextField];
+	return YES;
+}
+
+
+#pragma mark - Internal
+
+- (void)sendMessage:(NSString *)message
+{
+	NSLog(@"Sending message : %@", message);
+	NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+	NSError *error = nil;
+	[self.session sendData:data toPeers:[NSArray arrayWithObject:self.peerID] withDataMode:GKSendDataReliable error:&error];
+	
+	[self.messages addObject:[NSString stringWithFormat:@"Send : %@", message]];
+	
+	NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[self.messages count] - 1 inSection:0];
+	[self.tableView beginUpdates];
+	[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+	[self.tableView endUpdates];
+	
+	[self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (void)receiveMessage:(NSString *)message
+{
+	NSLog(@"Receiving message : %@", message);
+	[self.messages addObject:[NSString stringWithFormat:@"Receive : %@", message]];
+	
+	NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:[self.messages count] - 1 inSection:0];
+	[self.tableView beginUpdates];
+	[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationBottom];
+	[self.tableView endUpdates];
+	
+	[self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+
+#pragma mark - Session receiver
+
+- (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context
+{
+	NSLog(@"Receive Data from %@ (%@)", [session displayNameForPeer:peer], peer);
+	[self receiveMessage:[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]];
+}
+
+
+#pragma mark - Actions
+
+- (IBAction)sendAction:(id)sender
+{
+	[self sendMessage:textField.text];
+	textField.text = @"";
+}
+
+
+#pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.messages count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BEMessageCell *cell = [inTableView dequeueReusableCellWithIdentifier:[BEMessageCell reuseIdentifier]];
     
-    // Configure the cell...
+	cell.messageLabel.text = [self.messages objectAtIndex:indexPath.row];
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+	if ([scrollView isDragging])
+	{
+		[textField resignFirstResponder];
+	}
 }
 
 @end
