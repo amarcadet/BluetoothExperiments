@@ -3,7 +3,7 @@
 //  BluetoothExperiments
 //
 //  Created by Antoine Marcadet on 14/03/12.
-//  Copyright (c) 2012 SQLI Agency. All rights reserved.
+//  Copyright (c) 2012 Epershand. All rights reserved.
 //
 
 #import "BEPrivateChatViewController.h"
